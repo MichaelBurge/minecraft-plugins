@@ -1,0 +1,5 @@
+package usa.MichaelBurge.PuzzleQuest;
+
+public abstract class scanningCircuit {
+
+}

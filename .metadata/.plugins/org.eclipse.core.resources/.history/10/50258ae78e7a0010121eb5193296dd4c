@@ -1,0 +1,208 @@
+package usa.MichaelBurge.BulletinBoard;
+
+import java.util.Date;
+import java.util.HashMap;
+
+public class Bulletin implements Comparable<Bulletin> {
+	public enum BulletinType {
+		SERVICE,
+		ITEM,
+		REGION
+	};
+	private String owner = "";
+	private String ownerDisplayName = "";
+	private String message = "";
+	private int value = 0;
+	private String accepter = "";
+	private HashMap<String, Date> expirations = new HashMap<String, Date>();
+	private int postingFee;
+	private int acceptFee;
+	private boolean isBuy = false;
+	private String regionName = "";
+	private int itemType = 0;
+	private byte itemData = 0;
+	private int itemAmount = 0;
+	private BulletinType type = BulletinType.SERVICE;
+	
+	public Bulletin() {}
+	
+	public static Bulletin CreateServiceBulletin(String name, String displayName, int award, int postingFee, int acceptFee,String message) {
+		Bulletin ret = new Bulletin();
+		
+		ret.setType(BulletinType.SERVICE);
+		ret.owner = name;
+		ret.ownerDisplayName = displayName;
+		ret.value = award;
+		ret.postingFee = postingFee;
+		ret.acceptFee = acceptFee;
+		ret.message = message;
+		return ret;
+	}
+
+	public static Bulletin CreateItemBulletin(String ownerName,int value, int postingFee, int acceptFee, int itemType, byte itemData, int itemAmount, String message, boolean isBuy)
+	{
+		Bulletin ret = new Bulletin();
+		
+		ret.setType(BulletinType.ITEM);
+		ret.owner = ownerName;
+		ret.value = value;
+		ret.postingFee = postingFee;
+		ret.acceptFee = acceptFee;
+		ret.itemType = itemType;
+		ret.itemData = itemData;
+		ret.itemAmount = itemAmount;
+		ret.message = message;
+		ret.isBuy = isBuy;
+		
+		return ret;
+	}
+	
+	public static Bulletin CreateRegionBulletin(String ownerName, int value, int postingFee, int acceptFee, String regionName, String message)
+	{
+		Bulletin ret = new Bulletin();
+		
+		ret.setType(BulletinType.REGION);
+		ret.owner = ownerName;
+		ret.value = value;
+		ret.postingFee = postingFee;
+		ret.acceptFee = acceptFee;
+		ret.regionName = regionName;
+		ret.message = message;
+		
+		return ret;
+	}
+	
+	@Override
+	public int compareTo(Bulletin b) {
+		if (b.value < value)
+			return 1;
+		else if (b.value > value)
+			return -1;
+		else return 0;
+	}
+	
+    public int getMinutesLeft(String hunter) {
+        return (int) Math.ceil(getMillisecondsLeft(hunter) / (1000 * 60));
+    }
+    
+    public long getMillisecondsLeft(String hunter) {
+        Date now = new Date();
+
+        long diff = expirations.get(hunter).getTime() - now.getTime();
+
+        return diff;
+    }
+    
+	public String getOwner() {
+		return owner;
+	}
+
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
+
+	public String getOwnerDisplayName() {
+		return ownerDisplayName;
+	}
+
+	public void setOwnerDisplayName(String ownerDisplayName) {
+		this.ownerDisplayName = ownerDisplayName;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public int getValue() {
+		return value;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
+	}
+
+	public String getAccepter() {
+		return accepter;
+	}
+
+	public void setAccepter(String accepter) {
+		this.accepter = accepter;
+	}
+
+	public HashMap<String, Date> getExpirations() {
+		return expirations;
+	}
+
+	public void setExpirations(HashMap<String, Date> expirations) {
+		this.expirations = expirations;
+	}
+
+	public int getPostingFee() {
+		return postingFee;
+	}
+
+	public void setPostingFee(int postingFee) {
+		this.postingFee = postingFee;
+	}
+
+	public int getAcceptFee() {
+		return acceptFee;
+	}
+
+	public void setAcceptFee(int acceptFee) {
+		this.acceptFee = acceptFee;
+	}
+
+	public void setBuy(boolean isBuy) {
+		this.isBuy = isBuy;
+	}
+
+	public boolean isBuy() {
+		return isBuy;
+	}
+
+	public void setRegionName(String regionName) {
+		this.regionName = regionName;
+	}
+
+	public String getRegionName() {
+		return regionName;
+	}
+
+	public void setItemType(int itemType) {
+		this.itemType = itemType;
+	}
+
+	public int getItemType() {
+		return itemType;
+	}
+
+	public void setItemAmount(int itemAmount) {
+		this.itemAmount = itemAmount;
+	}
+
+	public int getItemAmount() {
+		return itemAmount;
+	}
+
+	public void setType(BulletinType type) {
+		this.type = type;
+	}
+
+	public BulletinType getType() {
+		return type;
+	}
+
+	public void setItemData(int itemData) {
+		this.itemData = itemData;
+	}
+
+	public int getItemData() {
+		return itemData;
+	}
+	
+}

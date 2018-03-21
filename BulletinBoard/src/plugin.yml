@@ -1,0 +1,8 @@
+name: BulletinBoard
+version: 1.0
+main: usa.MichaelBurge.BulletinBoard.BulletinBoard
+description: Provides a bulletin board system with iConomy support
+commands:
+  bulletin:
+    description:  Lists all BulletinBoard commands 
+    usage: /<command> help

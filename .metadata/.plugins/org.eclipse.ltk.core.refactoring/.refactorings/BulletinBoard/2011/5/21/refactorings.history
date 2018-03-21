@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;&apos; to &apos;usa.MichaelBurge.BulletinBoard.Bulletin.getMessage()&apos;&#x0D;&#x0A;- Original project: &apos;BulletinBoard&apos;&#x0D;&#x0A;- Destination element: &apos;usa.MichaelBurge.BulletinBoard.Bulletin.getMessage()&apos;&#x0D;&#x0A;- Original element: &apos;usa.MichaelBurge.BulletinBoard.Bulletin.setOwnerDisplayName(...)&apos;&#x0D;&#x0A;- Textual move only&#x0D;&#x0A;- Update references to refactored element" description="Move method" destination="/src&lt;usa.MichaelBurge.BulletinBoard{Bulletin.java[Bulletin~getMessage" element1="/src&lt;usa.MichaelBurge.BulletinBoard{Bulletin.java[Bulletin~setOwnerDisplayName~QString;" flags="589830" id="org.eclipse.jdt.ui.move" members="1" policy="org.eclipse.jdt.ui.moveMembers" stamp="1305607381297" version="1.0"/>
+</session>

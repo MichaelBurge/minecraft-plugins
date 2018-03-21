@@ -1,0 +1,6 @@
+name: PuzzleQuest
+main: usa.MichaelBurge.PuzzleQuest.PuzzleQuest
+version: 1.0
+author: MichaelBurge
+description: RedstoneChips add-on library for questing.
+depend: [RedstoneChips,uQuest]

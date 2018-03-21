@@ -1,0 +1,140 @@
+package usa.MichaelBurge.PuzzleQuest;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.tal.redstonechips.circuit.Circuit;
+/**
+ *
+ * @author Michael Burge(modification of Tal Eisenberg's PIR sensor)
+ * On clock activate: If the circuit type is 'detect', then if at least one player is within a certain distance 
+ * with the quest as their active one, signal true. Otherwise, signal false.
+ * If the circuit type is 'give', then the output is the result of giving the quest to the player, which may
+ * fail because he already has a quest.
+ * If the circuit type is 'drop', then the output is the result of dropping the player's active quest.
+ * If the circuit type is 'finish', then the output is always true and the specified quest is finished.
+ */
+public class questcircuit extends Circuit {
+	private PuzzleQuest plugin = null;
+    private Location center;
+    private int radius = 10;
+    private int questId;
+    private String type = null;
+    
+    @Override
+    public void inputChange(int inIdx, boolean state) {
+        if (state) {
+            // clock pin triggered
+            boolean alarm = false;
+
+            for (Player p : world.getPlayers()) {
+                Location l = p.getLocation();
+
+                if (isInRadius(center, l, radius)) {
+                	debug("Player detected.");
+                	alarm = plugin.detectQuest(questId, p);
+                	
+                    if (type.equals("detect"))
+                    {
+                    } else if (type.equals("finish"))
+                    {
+                    	if (alarm) {
+                    		plugin.finishQuest(questId, p);
+                    		debug("Forced player quest to finish.");
+                    	} else debug("Player's quest not the one listed.");
+                	} else if (type.equals("give"))
+                	{
+                		alarm = plugin.giveQuest(questId, p);
+                		if (alarm)
+                			debug("Quest " + questId + " given to player.");
+                		else debug("Either the player has an active quest or has already completed this quest.");
+                	} else if (type.equals("drop"))
+                	{
+                		if (alarm)
+                		{
+                			alarm = plugin.dropQuest(questId, p);
+                			p.sendMessage("The quest " + plugin.uQuest.getTheQuests().get(questId).getName() + " has been dropped!");
+                			debug("Forced player quest to be dropped.");
+                		} else debug("Cannot drop quest; player not taking quest " + questId);
+                	} else if (type.equals("clear"))
+                	{
+                		alarm = plugin.clearQuest(questId, p);
+                		p.sendMessage("The quest " + plugin.uQuest.getTheQuests().get(questId).getName() + " has been cleared! You may now take it again.");
+                		if (alarm)
+                			debug("Quest " + questId + " cleared from completed quests.");
+                		else debug("Quest " + questId + " had not been completed.");
+                	} else if (type.equals("completed"))
+                	{
+                		alarm = plugin.completedQuest(questId, p);
+                		debug("Quest " + questId + " completed: " + alarm);
+                	}
+                } 
+            }            
+
+            sendOutput(0, alarm);
+        } else
+        {
+        	sendOutput(0,false);
+        }
+    }
+
+    @Override
+    protected boolean init(CommandSender sender, String[] args) {
+        if (interfaceBlocks.length!=1) {
+            error(sender, "Expecting 1 interface block.");
+            return false;
+        }
+
+        if (inputs.length!=1) {
+            error(sender, "Expecting 1 clock input pin.");
+            return false;
+        }
+
+        if (outputs.length!=1) {
+            error(sender, "Expecting 1 signal output.");
+            return false;
+        }
+        switch (args.length)
+        {
+        case 0:
+        	error(sender,"No quest name given as input for arg 1.");
+        	break;
+        case 1:
+        	error(sender,"No circuit type was given for arg 2('detect','give','drop','completed','finish','clear') a quest).");
+        case 3:
+            try {
+                radius = Integer.decode(args[1]);
+                
+            } catch (NumberFormatException ne) {
+                error(sender, "Incorrect radius: " + args[1]);
+                return false;
+            }
+        case 2:
+        	type = args[1];
+        	try {
+        		questId = Integer.decode(args[0]);
+        	} catch (NumberFormatException ne) {
+        		error(sender,"Incorrect quest ID: " + args[0]);
+        	}
+        	// ToDo: Check to see if the quest actually exists(or not).
+        	break;
+        default:
+        	error(sender,"Too many arguments.");
+        	break;
+        	
+        }
+        
+        Location i = interfaceBlocks[0];
+        center = i;
+        
+        plugin = (PuzzleQuest) Bukkit.getServer().getPluginManager().getPlugin("PuzzleQuest");
+        if (plugin == null)
+        	error(sender, "PuzzleQuest not a registered plugin.");
+        return true;
+    }
+
+    private static boolean isInRadius(Location loc1, Location loc2, double radius)  {
+        return (loc1.getX() - loc2.getX())*(loc1.getX() - loc2.getX()) + (loc1.getY() - loc2.getY())*(loc1.getY() - loc2.getY()) + (loc1.getZ() - loc2.getZ())*(loc1.getZ() - loc2.getZ()) <= radius*radius;
+    }
+}

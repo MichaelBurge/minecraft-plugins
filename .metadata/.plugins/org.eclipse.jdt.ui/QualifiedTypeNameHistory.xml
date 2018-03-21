@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.bukkit.BlockChangeDelegate"/>
+<fullyQualifiedTypeName name="org.bukkit.event.Event.Priority"/>
+<fullyQualifiedTypeName name="com.elmakers.mine.bukkit.persistence.annotation.PersistField"/>
+<fullyQualifiedTypeName name="org.bukkit.event.player.PlayerListener"/>
+<fullyQualifiedTypeName name="com.avaje.ebean.Query.Type"/>
+<fullyQualifiedTypeName name="org.bukkit.event.Event.Type"/>
+<fullyQualifiedTypeName name="org.bukkit.event.player.PlayerInventoryEvent"/>
+<fullyQualifiedTypeName name="org.bukkit.event.player.PlayerInteractEvent"/>
+<fullyQualifiedTypeName name="net.minecraft.server.Item"/>
+<fullyQualifiedTypeName name="org.bukkit.Location"/>
+<fullyQualifiedTypeName name="org.bukkit.block.BlockFace"/>
+<fullyQualifiedTypeName name="com.sk89q.worldedit.tools.BlockTool"/>
+<fullyQualifiedTypeName name="com.sk89q.worldedit.tools.brushes.Brush"/>
+<fullyQualifiedTypeName name="org.bukkit.plugin.java.JavaPlugin"/>
+<fullyQualifiedTypeName name="com.nijiko.coelho.iConomy.util.Messaging"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.nijiko.coelho.iConomy.iConomy"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="java.awt.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.logging.Level"/>
+<fullyQualifiedTypeName name="hawox.uquest.questclasses.CurrentQuest"/>
+<fullyQualifiedTypeName name="hawox.uquest.questclasses.QuestConverter"/>
+<fullyQualifiedTypeName name="hawox.uquest.questclasses.QuestConverter.StorageQuestV2"/>
+<fullyQualifiedTypeName name="hawox.uquest.questclasses.QuestLoader"/>
+<fullyQualifiedTypeName name="hawox.uquest.questclasses.LoadedQuest"/>
+<fullyQualifiedTypeName name="com.iConomy.system.Holdings"/>
+<fullyQualifiedTypeName name="com.gmail.nossr50.skills.Herbalism"/>
+<fullyQualifiedTypeName name="usa.MichaelBurge.BulletinBoard.Bulletin.BulletinType"/>
+<fullyQualifiedTypeName name="info.somethingodd.bukkit.odd.item.OddItem"/>
+<fullyQualifiedTypeName name="org.bukkit.Bukkit"/>
+<fullyQualifiedTypeName name="org.bukkit.inventory.ItemStack"/>
+<fullyQualifiedTypeName name="org.bukkit.inventory.PlayerInventory"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="org.bukkit.Material"/>
+</qualifiedTypeNameHistroy>
